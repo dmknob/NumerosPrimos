@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <conio.h>
 #include <math.h>
 #include <time.h>
 
@@ -15,52 +14,38 @@ int main(int argc, char *argv[])
     unsigned long max=0;  //Valor ate onde procurar numeros primos
     unsigned long numero;   //Controla o la�o For
     unsigned long primos[1000000]; //Armazena os numero primos encontrados    //7665000
-    //unsigned long long primos[259828]; //Armazena os numero primos encontrados
     int resto=0;    //Resto da divisao
     primos[0]=2;    //Primeiro numero primo
-    //printf("Digite o numero: ");
-    //scanf("%d", &max);
     max = atof(argv[1]);
 
     start_time = clock();
     for (numero = 3; numero<=max; numero=numero+2)
     {
-        //resto = numero % primos[0];
-        //if (resto != 0) //Nao eh par
-        //{
-            for (i=0; i<=x; i++)
+        for (i=0; i<=x; i++)
+        {
+            resto = numero % primos[i];
+            if(resto == 0)
             {
-                //printf("I: %d\n", i);
-                resto = numero % primos[i];
-                //printf("R: %d\n", resto);
-                if(resto == 0)
+                break; //Sai do la�o
+            }
+            else
+            {
+                if(i==x)
                 {
-                    break; //Sai do la�o
-                }
-                else
-                {
-                    if(i==x)
-                    {
-                        //printf("Primo -> N: %d R: %d\n", numero, resto);
-                        x=x+1;  //Incrementa o total de primos
-                        primos[x]=numero;   //Adiciona o numero a lista de primos
-                        //break;
-                    }
+                    x=x+1;  //Incrementa o total de primos
+                    primos[x]=numero;   //Adiciona o numero a lista de primos
                 }
             }
-        //}
+        }
     }
-
-
     for(i = 0; i < x; i++)
     {
         printf("%lu ", primos[i]);
     }
     printf("\n");
-
     printf("Total primos ate %lu: %lu\n", max,x+1);
     double time_in_seconds = (clock() - start_time) / (double)CLOCKS_PER_SEC;
     printf("Tempo: %f\n", time_in_seconds);
-    //system("pause");
+    }
     return 0;
 }
