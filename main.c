@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
     unsigned long primos[1000000]; //Armazena os numero primos encontrados    //7665000
     int resto=0;    //Resto da divisao
     primos[0]=2;    //Primeiro numero primo
-    max = atof(argv[1]);
+    char *ptr;
+    max = strtoul(argv[1], &ptr, 10);
 
     start_time = clock();
     for (numero = 3; numero<=max; numero=numero+2)
@@ -38,7 +39,7 @@ int main(int argc, char *argv[])
             }
         }
     }
-    for(i = 0; i < x; i++)
+    for(i = 0; i <= x; i++)
     {
         printf("%lu ", primos[i]);
     }
@@ -46,6 +47,5 @@ int main(int argc, char *argv[])
     printf("Total primos ate %lu: %lu\n", max,x+1);
     double time_in_seconds = (clock() - start_time) / (double)CLOCKS_PER_SEC;
     printf("Tempo: %f\n", time_in_seconds);
-    }
     return 0;
 }
